@@ -55,7 +55,7 @@
 #define SIDEBAND_USB	2
 
 uint32_t freq = 7100000; 			// 7.100.000 Hz
-uint32_t ifreq = 7998300;			// IF 7.998.300 Hz
+uint32_t ifreq = 7998600;			// IF 7.998.600 Hz
 uint32_t tmp_freq = 0;
 uint32_t save_freq = 0;
 uint32_t min_freq = MIN_FREQ;
@@ -144,16 +144,14 @@ void update_menu () {
 
 void set_vfo_freq (uint32_t fq, uint32_t ifq) {
 	tmp_freq = fq;
-	if (calibrate == CAL_NONE) { // not in calibrate mode
-		if (work_sideband == SIDEBAND_USB) { // if F > IF use low injection for USB
-			if (fq > ifq) {
-				tmp_freq = fq - ifq;
-			} else {
-				tmp_freq = ifq - fq;
-			}
-		} else { // if F < IF use high injection for LSB
-			tmp_freq = fq + ifq;
+	if (work_sideband == SIDEBAND_USB) { // if F > IF use low injection for USB
+		if (fq > ifq) {
+			tmp_freq = fq - ifq;
+		} else {
+			tmp_freq = ifq - fq;
 		}
+	} else { // if F < IF use high injection for LSB
+		tmp_freq = fq + ifq;
 	}
 	si5351_setfrequency (tmp_freq, 0); // Set VFO frequency
 }
@@ -213,10 +211,10 @@ int main(void) {
 
 	ssd1306tx_stringxy(ssd1306xled_font8x16data,  8,  102, 2, "kHz");
 	if (calibrate == CAL_START_FREQ) { // write about setup mode
-		ssd1306tx_stringxy(ssd1306xled_font8x16data,  8,  0,   6, "SET VF frq");
+		ssd1306tx_stringxy(ssd1306xled_font8x16data,  8, 48, 6, "#VFO");
 		min_freq = 0; // set minimum frequency for setup to 0
 	} else {
-		ssd1306tx_stringxy(ssd1306xled_font8x16data,  8,  0,   6, "      STEP");
+		ssd1306tx_stringxy(ssd1306xled_font8x16data,  8, 48, 6, "STEP");
 	}
 	update_freq (freq, ifreq);
 	update_step (st_id);
@@ -242,7 +240,7 @@ int main(void) {
 				change_freq = 1;
 			} 
 		}
-		// Encoder rotate right, change freq
+		// Encoder rotate right, change freq or parameters
 		if (enc_right != enc_r_prev) {
 			enc_r_prev = enc_right;
 			if (menu_item == MENU_FREQ) {			
@@ -253,9 +251,6 @@ int main(void) {
 				}					
 				change_freq = 1;
 			} 
-		}
-		// Encoder rotate left or right, change menu param value
-		if (enc_left != enc_l_prev || enc_right != enc_r_prev) {
 			if (menu_item == MENU_STEP) {
 				if (st_id < steps_count - 1) {
 					st_id ++;
@@ -294,24 +289,25 @@ int main(void) {
 						eeprom_write_dword ((uint32_t*)0, freq);
 						save_freq = freq;
 						freq = ifreq;
-						ifreq = 0;
 						calibrate = CAL_IF;
 						change_freq = 1;
-						ssd1306tx_stringxy(ssd1306xled_font8x16data,  8,  0,   6, "SET IF frq");
+						ssd1306tx_stringxy(ssd1306xled_font8x16data,  8, 48, 6, "#BFO");
 					} else if (calibrate == CAL_IF) { // setup IF frequency
 						eeprom_write_dword ((uint32_t*)3, freq);
 						ifreq = freq;
-						set_bfo_freq (ifreq); // Set BFO frequency
 						freq = save_freq;
 						calibrate = CAL_NONE;
 						change_freq = 1;
 						min_freq = MIN_FREQ; // set minimum frequency for working value
-						ssd1306tx_stringxy(ssd1306xled_font8x16data,  8,  0,   6, "      STEP");
+						ssd1306tx_stringxy(ssd1306xled_font8x16data,  8, 48, 6, "STEP");
 					}
 				} else if (calibrate == CAL_NONE && enc_count > 3) { // in work mode & long press
 					enc_count = 0;					
 					eeprom_write_dword ((uint32_t*)0, freq);
-					ssd1306tx_stringxy(ssd1306xled_font8x16data,  8,  0,   6, "SAVE");
+					ssd1306tx_stringxy(ssd1306xled_font8x16data,  8, 0, 6, "SAVE");
+					_delay_ms(500);	// Wait 500 ms	
+					ssd1306tx_stringxy(ssd1306xled_font8x16data,  8, 0, 6, " ");
+					update_mode ();
 					change_freq = 1;
 				}
 			}
