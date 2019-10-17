@@ -7,6 +7,7 @@ Schematics exactly the same with ZL2PD single band VFO: https://www.zl2pd.com/ti
 SSD1306 OLED 128x64 display used.
 
 Brief wiring:
+```
                         Attiny85
                       +----------+   
   ---[RESET]----------+ PB5  Vcc +---(+)--VCC + 3.3 VOLTS --------
@@ -15,6 +16,7 @@ Brief wiring:
   ---[GROUND]---------+ GND  PB0 +---[ENCODER BUTTON]-------------
                       +----------+
   
+```
   I2C SCL and I2C SDA pull-up to VCC by 4.7 kOhm resistors. 
   ATTINY 85 FUSES set to E:FF, H:DF, L:62
   SI5351 CLK0 output is VFO, CLK1 output is BFO
