@@ -18,7 +18,9 @@ Brief wiring:
   
   I2C SCL and I2C SDA pull-up to VCC by 4.7 kOhm resistors. 
   ATTINY 85 FUSES set to E:FF, H:DF, L:62
-  SI5351 CLK0 output is VFO, CLK1 output is BFO
+  SI5351 CLK0 output is VFO
+         CLK1 output is BFO. 
+         SI equipped with 25MHz crystal. If 27Mhz or other will be used you must change XTAL constant in lib/si5351.h
 ```
 
 # Making project:
