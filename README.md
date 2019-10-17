@@ -3,7 +3,9 @@ VFO build around Si5351, Attiny85, ssd1306
 
 # VFO Schematics:
 
-Schematics exactly the same with ZL2PD single band VFO: https://www.zl2pd.com/tiny85_si5351_VFO.html , but without S-meter. 
+Schematics exactly the same with ZL2PD single band VFO: https://www.zl2pd.com/tiny85_si5351_VFO.html , but without S-meter and
+SSD1306 OLED 128x64 display used.
+
 Brief wiring:
                         Attiny85
                       +----------+   
