@@ -16,10 +16,10 @@ Brief wiring:
   ---[GROUND]---------+ GND  PB0 +---[ENCODER BUTTON]-------------
                       +----------+
   
-```
   I2C SCL and I2C SDA pull-up to VCC by 4.7 kOhm resistors. 
   ATTINY 85 FUSES set to E:FF, H:DF, L:62
   SI5351 CLK0 output is VFO, CLK1 output is BFO
+```
 
 # Making project:
 
