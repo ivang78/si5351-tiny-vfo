@@ -31,16 +31,16 @@ make
 
 **Setup**.
 Enter setup (calibration) mode by pressing ENCODER button at power-on. "#VFO" will be shown at the bottom screen line. 
-Set starting VFO frequency using ENCODER rotation. ENCODER short button press change menu items. First click select 
+Set starting VFO frequency using ENCODER rotation. ENCODER short button pressure change menu items. First click select 
 sideband change (LSB/USB), second click select step change (100Hz, 1kHz, 5kHz, 1MHz). Next click back to frequency select. 
-Long press of ENCODER button store starting VFO frequency to EEPROM and go to BFO frequency. 
+Long pressure of ENCODER button store starting VFO frequency to EEPROM and go to BFO frequency. 
 At BFO frequency setup #BFO will shown at the bottom screen line. Set BFO frequency exactly the VFO frequency. Long ENCODER
-button press store BFO frequency to EEPROM and return to normal operation mode. 
+button pressure store BFO frequency to EEPROM and return to normal operation mode. 
 
 **Operation mode**.
 ENCODER rotation change frequency by selected step. ENCODER short button press change menu items. First click select 
 sideband change (LSB/USB), second click select step change (100Hz, 1kHz, 5kHz, 1MHz). Next click back to frequency select.
-Long press of ENCODER button store starting VFO frequency to EEPROM.
+Long pressure of ENCODER button store starting VFO frequency to EEPROM.
 
 # Credits
 
