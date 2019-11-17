@@ -172,13 +172,10 @@ int main(void) {
 
 	// Set input ports
 	DDRB = 0x00;    // PORTB = Inputs
-	// Set Outputs PB1, PB2 to Low, Inputs PB0, PB3 and PB4 to Hi-Z
-	DDRB &=~(1 << ENC_LEFT);
-	DDRB &=~(1 << ENC_RIGHT);
-	DDRB &=~(1 << ENC_BTN);
-	PORTB |= (1 << ENC_LEFT) ;
-	PORTB |= (1 << ENC_RIGHT) ;
-	PORTB |= (1 << ENC_BTN) ;
+	// Set Inputs PB0, PB3 and PB4 to pull-up
+	PORTB |= (1 << ENC_LEFT);
+	PORTB |= (1 << ENC_RIGHT);
+	PORTB |= (1 << ENC_BTN);
 
 	tmp_freq = eeprom_read_dword ((uint32_t*)0);
 	if (tmp_freq >= MIN_FREQ && tmp_freq <= MAX_FREQ) {
