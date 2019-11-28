@@ -7,13 +7,13 @@ if (isset ($argv[1]) && $argv[1]) {
 	$fp2 = fopen($filename.".conv", "w");	
 	while(!feof($fp1)) {
   		$str = fgets($fp1);
-  		if (strpos ($str, "0x") !== false && substr_count ($str, ",") == 16) {
+  		if (substr_count ($str, ",") == 15) {
   			$arr = explode (",", $str);
   			$arr2 = array ();
   			$rest_str = "";
   			foreach ($arr as $_i => $hexv) {
   				if ($_i <= 15) {
-	  				$binv = str_pad (base_convert(str_replace ("0x", "", $hexv), 16, 2), 8, "0", STR_PAD_LEFT);
+	  				$binv = str_pad (base_convert(str_replace ("0x", "", $hexv), 10, 2), 8, "0", STR_PAD_LEFT);
 	  				$arr2[$_i] = $binv;
 	  			} else {
 	  				$rest_str .= $hexv;

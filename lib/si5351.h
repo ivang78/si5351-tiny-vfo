@@ -7,9 +7,9 @@
 #define BB2(x) ((uint8_t)(x>>16))
 
 #define SI5351_SADDR	0xC0				// I2C addess of SI5351
-#define SI5351BX_XTAL 25003870			// Frequency of Quartz-Oszillator
-#define SI5351BX_MSA  35                // VCOA is at 25mhz*35 = 875mhz
-#define SI5351BX_XTALPF 3               // 1:6pf  2:8pf  3:10pf
+#define SI5351BX_XTAL 	25003200			// Frequency of Quartz-Oszillator
+#define SI5351BX_MSA  	35					// VCOA is at 25mhz*35 = 875mhz
+#define SI5351BX_XTALPF 3					// 1:6pf  2:8pf  3:10pf
 
 void si5351_init ();
 void si5351_setfrequency (uint32_t fout, uint8_t clknum);

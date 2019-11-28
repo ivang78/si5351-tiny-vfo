@@ -9,15 +9,6 @@ SSD1306 OLED 128x64 display used. Actual VFO schematics placed at schematics/sch
 Brief wiring:
 ```
                         Attiny85
-                  +----------+
-        (RST)-----+ PB5  Vcc +---(+)--VCC------
-  ---[ENC BUTT]---+ PB3  PB2 +---[I2C/SCL]-----
-  ---[ENC LEFT]---+ PB4  PB1 +---[I2C/SDA]-----
-  --------(-)-----+ GND  PB0 +---[ENC RIGHT]---
-                  +----------+
-
-
-
                        +----------+   
   ---[RESET]-----------+ PB5  Vcc +---(+)--VCC + 3.3 VOLTS --------
   ---[ENCODER BUTTON]--+ PB3  PB2 +---[I2C/SCL SI5351 / SSD1306]---
@@ -40,16 +31,17 @@ make
 
 **Setup**.
 Enter setup (calibration) mode by pressing ENCODER button at power-on. "#VFO" will be shown at the bottom screen line. 
-Set starting VFO frequency using ENCODER rotation. ENCODER short button pressure change menu items. First click select 
-sideband change (LSB/USB), second click select step change (100Hz, 1kHz, 5kHz, 1MHz). Next click back to frequency select. 
+Set starting VFO frequency using ENCODER rotation. ENCODER short button pressure change step (100Hz, 1kHz, 5kHz, 1MHz). 
 Long pressure of ENCODER button store starting VFO frequency to EEPROM and go to BFO frequency. 
 At BFO frequency setup #BFO will shown at the bottom screen line. Set BFO frequency exactly the VFO frequency. Long ENCODER
 button pressure store BFO frequency to EEPROM and return to normal operation mode. 
 
 **Operation mode**.
-ENCODER rotation change frequency by selected step. ENCODER short button press change menu items. First click select 
-sideband change (LSB/USB), second click select step change (100Hz, 1kHz, 5kHz, 1MHz). Next click back to frequency select.
-Long pressure of ENCODER button store starting VFO frequency to EEPROM.
+ENCODER rotation change frequency by selected step. ENCODER short button pressure change step (100Hz, 1kHz, 5kHz, 1MHz).
+Long pressure of ENCODER button (> 5 sec) enter the menu. First menu item is sideband (LSB/USB), rotating encoder select
+desired sideband. Short ENCODER pressure follow to the next menu item. Second menu item is RIT (Receive independant of
+Transmit). Value 000 means than receive and transmit frequencies are the same. Rotating ENCODER may change receive frequency
+from +600 Hz of transmit frequency to -600 Hz. Short ENCODER pressure save all parameters to EEPROM and return to VFO mode. 
 
 # Credits
 
