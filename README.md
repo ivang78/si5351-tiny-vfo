@@ -9,12 +9,21 @@ SSD1306 OLED 128x64 display used.
 Brief wiring:
 ```
                         Attiny85
-                      +----------+   
-  ---[RESET]----------+ PB5  Vcc +---(+)--VCC + 3.3 VOLTS --------
-  ---[ENCODER LEFT]---+ PB3  PB2 +---[I2C/SCL SI5351 / SSD1306]---
-  ---[ENCODER RIGHT]--+ PB4  PB1 +---[I2C/SDA SI5351 / SSD1306]---
-  ---[GROUND]---------+ GND  PB0 +---[ENCODER BUTTON]-------------
-                      +----------+
+                  +----------+
+        (RST)-----+ PB5  Vcc +---(+)--VCC------
+  ---[ENC BUTT]---+ PB3  PB2 +---[I2C/SCL]-----
+  ---[ENC LEFT]---+ PB4  PB1 +---[I2C/SDA]-----
+  --------(-)-----+ GND  PB0 +---[ENC RIGHT]---
+                  +----------+
+
+
+
+                       +----------+   
+  ---[RESET]-----------+ PB5  Vcc +---(+)--VCC + 3.3 VOLTS --------
+  ---[ENCODER BUTTON]--+ PB3  PB2 +---[I2C/SCL SI5351 / SSD1306]---
+  ---[ENCODER LEFT]----+ PB4  PB1 +---[I2C/SDA SI5351 / SSD1306]---
+  ---[GROUND]----------+ GND  PB0 +---[ENCODER RIGHT]--------------
+                       +----------+
   
   I2C SCL and I2C SDA pull-up to VCC by 4.7 kOhm resistors. 
   ATTINY 85 FUSES set to E:FF, H:DF, L:62
