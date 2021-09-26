@@ -233,14 +233,14 @@ int main(void) {
 	if (tmp_freq >= MIN_FREQ && tmp_freq <= MAX_FREQ) {
 		freq = tmp_freq;
 	}
-	tmp_freq = eeprom_read_dword ((uint32_t*)3);
+	tmp_freq = eeprom_read_dword ((uint32_t*)4);
 	if (tmp_freq >= 0 && tmp_freq <= MAX_FREQ) {
 		ifreq = tmp_freq;
 	}
 	if (freq > SIDEBAND_FREQ) {
 		work_sideband = SIDEBAND_USB;
 	}
-	override_sideband = eeprom_read_byte ((uint8_t*)6);
+	override_sideband = eeprom_read_byte ((uint8_t*)8);
 	if (override_sideband == SIDEBAND_LSB || override_sideband == SIDEBAND_USB) {
 		work_sideband = override_sideband;
 		override_sideband = 1;
@@ -357,7 +357,7 @@ int main(void) {
 						menu_item = MENU_SIDEBAND;
 						menu_status = MENU_HIDE;
 						eeprom_write_dword ((uint32_t*)0, freq);
-						eeprom_write_byte ((uint8_t*)6, work_sideband);
+						eeprom_write_byte ((uint8_t*)8, work_sideband);
 					}
 					update_menu ();
 				}
@@ -375,7 +375,7 @@ int main(void) {
 					change_freq = 1;
 					ssd1306tx_stringxy(ssd1306xled_font8x16data,  8, 48, 6, "#BFO");
 				} else if (calibrate == CAL_IF) { // setup IF frequency
-					eeprom_write_dword ((uint32_t*)3, freq);
+					eeprom_write_dword ((uint32_t*)4, freq);
 					ifreq = freq;
 					freq = save_freq;
 					calibrate = CAL_NONE;
